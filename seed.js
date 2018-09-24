@@ -1,12 +1,13 @@
-const db = require("./models");
-const { vegetable, plot, gardener } = db.models;
+const { db, Vegetable, Plot, Gardener } = require("./models");
+
+console.log(db.models);
 
 db.sync({ force: true })
   .then(() => {
     console.log("Database synced!");
   })
   .then(() => {
-    vegetable.bulkCreate([
+    Vegetable.bulkCreate([
       {
         name: "Carrot",
         color: "Orange",
@@ -20,10 +21,10 @@ db.sync({ force: true })
     ]);
   })
   .then(() => {
-    return vegetable.findAll();
+    return Vegetable.findAll();
   })
   .then(v => {
-    gardener.bulkCreate([
+    Gardener.bulkCreate([
       {
         name: "Jeff",
         age: 23,
@@ -37,10 +38,10 @@ db.sync({ force: true })
     ]);
   })
   .then(() => {
-    return gardener.findAll();
+    return Gardener.findAll();
   })
   .then((g) => {
-    return plot.bulkCreate([
+    return Plot.bulkCreate([
       {
         size: 300,
         shaded: true,
